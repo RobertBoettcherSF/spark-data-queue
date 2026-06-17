@@ -1,0 +1,43 @@
+--  SPARK Data Queue - Main GNAT Project File
+--  
+--  Copyright (C) 2024 Robert Boettcher
+--  
+--  This file is part of spark-data-queue.
+--  
+--  spark-data-queue is free software: you can redistribute it and/or modify
+--  it under the terms of the MIT License as published by
+--  the Free Software Foundation.
+--  
+--  See LICENSE file for full license text.
+
+--  ============================================================================
+--  GNAT PROJECT FILE: spark_data_queue.gpr
+--  
+--  Main project file for SPARK Data Queue library.
+--  
+--  Usage:
+--    gprbuild -P spark_data_queue.gpr        # Build the library
+--    gnatprove -P spark_data_queue.gpr       # Run formal verification
+--  
+--  ============================================================================
+
+project Spark_Data_Queue is
+   
+   --  Source directory
+   for Source_Dirs use ("src/queue");
+   
+   --  Object directory
+   for Object_Dir use "obj";
+   
+   --  Use Ada 2012
+   for Language use ("Ada_2012");
+   
+   --  Source files
+   for Source_Files use ("spark_data_queue.ads", "spark_data_queue.adb");
+   
+   --  Compiler options
+   package Compiler is
+      for Default_Switches ("Ada") use ("-g", "-O2", "-gnatn", "-gnata");
+   end Compiler;
+
+end Spark_Data_Queue;
