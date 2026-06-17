@@ -65,23 +65,23 @@ package Spark_Data_Queue is
    
    function Is_Empty (Q : Queue_Type) return Boolean
      with
-       Global => (In => Q),
+       Global => (Input => Q),
        Depends => (null => Q);
    
    function Is_Full (Q : Queue_Type) return Boolean
      with
-       Global => (In => Q),
+       Global => (Input => Q),
        Depends => (null => Q);
    
    function Size (Q : Queue_Type) return Natural
      with
-       Global => (In => Q),
+       Global => (Input => Q),
        Depends => (null => Q),
        Post => Size'Result <= Q.Capacity;
    
    function Max_Size (Q : Queue_Type) return Positive
      with
-       Global => (In => Q),
+       Global => (Input => Q),
        Depends => (null => Q),
        Post => Max_Size'Result = Q.Capacity;
    
@@ -93,7 +93,7 @@ package Spark_Data_Queue is
    
    function Contains (Q : Queue_Type; Item : Element_Type) return Boolean
      with
-       Global => (In => Q),
+       Global => (Input => Q),
        Depends => (null => Q);
 
 private
