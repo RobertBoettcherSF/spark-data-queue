@@ -1,4 +1,4 @@
---  SPARK Data Queue - Main GNAT Project File
+--  SPARK Data Queue - GNAT Project File
 --  
 --  Copyright (C) 2024 Robert Boettcher
 --  
@@ -13,8 +13,10 @@
 --  ============================================================================
 --  GNAT PROJECT FILE: spark_data_queue.gpr
 --  
+--  Version: 0.04
+--  
 --  Main project file for SPARK Data Queue library.
---  Compatible with older GNAT versions.
+--  All source files are in the root directory.
 --  
 --  Usage:
 --    gprbuild -P spark_data_queue.gpr        # Build the library
@@ -25,16 +27,13 @@
 project Spark_Data_Queue is
    
    --  Project version
-   Version := "0.03";
+   Version := "0.04";
    
-   --  Source directory
-   for Source_Dirs use ("src/queue");
+   --  Source files in root directory
+   for Source_Files use ("spark_data_queue.ads", "spark_data_queue.adb");
    
    --  Object directory
    for Object_Dir use "obj";
-   
-   --  Source files
-   for Source_Files use ("spark_data_queue.ads", "spark_data_queue.adb");
    
    --  Compiler options for Ada 2012
    package Compiler is
