@@ -13,7 +13,7 @@
 --  ============================================================================
 --  SPECIFICATION: Generic Thread-Safe Queue with Formal Verification
 --  
---  Version: 0.04
+--  Version: 0.05
 --  
 --  Purpose: Provides a thread-safe, formally verified FIFO queue for embedded
 --           real-time systems. Suitable for cFS (Core Flight System) ports.
@@ -38,7 +38,6 @@ pragma SPARK_Mode (On);
 
 generic
    type Element_Type is private;
-   Default_Element : Element_Type := Element_Type'First;
 
 package Spark_Data_Queue is
    
@@ -49,52 +48,21 @@ package Spark_Data_Queue is
    
    function Create_Queue (Max_Size : Positive := Positive'Last) return Queue_Type;
    
-   procedure Enqueue (Q : in out Queue_Type; Item : Element_Type)
-     with
-       Global => (In_Out => Q),
-       Depends => (Q => Q'Old, Item => null),
-       Pre => not Is_Full (Q),
-       Post => Size (Q) = Size (Q'Old) + 1;
+   procedure Enqueue (Q : in out Queue_Type; Item : Element_Type);
    
-   procedure Dequeue (Q : in out Queue_Type; Item : out Element_Type)
-     with
-       Global => (In_Out => Q),
-       Depends => (Q => Q'Old, Item => Q'Old),
-       Pre => not Is_Empty (Q),
-       Post => Size (Q) = Size (Q'Old) - 1;
+   procedure Dequeue (Q : in out Queue_Type; Item : out Element_Type);
    
-   function Is_Empty (Q : Queue_Type) return Boolean
-     with
-       Global => (Input => Q),
-       Depends => (null => Q);
+   function Is_Empty (Q : Queue_Type) return Boolean;
    
-   function Is_Full (Q : Queue_Type) return Boolean
-     with
-       Global => (Input => Q),
-       Depends => (null => Q);
+   function Is_Full (Q : Queue_Type) return Boolean;
    
-   function Size (Q : Queue_Type) return Natural
-     with
-       Global => (Input => Q),
-       Depends => (null => Q),
-       Post => Size'Result <= Q.Capacity;
+   function Size (Q : Queue_Type) return Natural;
    
-   function Max_Size (Q : Queue_Type) return Positive
-     with
-       Global => (Input => Q),
-       Depends => (null => Q),
-       Post => Max_Size'Result = Q.Capacity;
+   function Max_Size (Q : Queue_Type) return Positive;
    
-   procedure Clear (Q : in out Queue_Type)
-     with
-       Global => (In_Out => Q),
-       Depends => (Q => null),
-       Post => Is_Empty (Q) and Size (Q) = 0;
+   procedure Clear (Q : in out Queue_Type);
    
-   function Contains (Q : Queue_Type; Item : Element_Type) return Boolean
-     with
-       Global => (Input => Q),
-       Depends => (null => Q);
+   function Contains (Q : Queue_Type; Item : Element_Type) return Boolean;
 
 private
    

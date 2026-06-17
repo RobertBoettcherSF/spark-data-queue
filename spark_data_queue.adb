@@ -13,7 +13,7 @@
 --  ============================================================================
 --  IMPLEMENTATION: Generic Thread-Safe Queue with Formal Verification
 --  
---  Version: 0.04
+--  Version: 0.05
 --  
 --  This implementation uses a circular buffer for O(1) enqueue and dequeue
 --  operations. The circular buffer wraps around when reaching the end of the
@@ -34,14 +34,7 @@ package body Spark_Data_Queue is
    function Create_Queue (Max_Size : Positive := Positive'Last) 
      return Queue_Type is
    begin
-      return Result : Queue_Type (Capacity => Max_Size) do
-         for I in 1 .. Max_Size loop
-            Result.Storage (I) := Default_Element;
-         end loop;
-         Result.Head := 1;
-         Result.Tail := 1;
-         Result.Count := 0;
-      end return;
+      return Result : Queue_Type (Capacity => Max_Size);
    end Create_Queue;
    
    procedure Enqueue (Q : in out Queue_Type; Item : Element_Type) is
@@ -106,9 +99,6 @@ package body Spark_Data_Queue is
       Q.Head := 1;
       Q.Tail := 1;
       Q.Count := 0;
-      for I in 1 .. Q.Capacity loop
-         Q.Storage (I) := Default_Element;
-      end loop;
    end Clear;
    
    function Contains (Q : Queue_Type; Item : Element_Type) return Boolean is

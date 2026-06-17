@@ -13,7 +13,7 @@
 --  ============================================================================
 --  GNAT PROJECT FILE: spark_data_queue.gpr
 --  
---  Version: 0.04
+--  Version: 0.05
 --  
 --  Main project file for SPARK Data Queue library.
 --  All source files are in the root directory.
@@ -27,7 +27,7 @@
 project Spark_Data_Queue is
    
    --  Project version
-   Version := "0.04";
+   Version := "0.05";
    
    --  Source files in root directory
    for Source_Files use ("spark_data_queue.ads", "spark_data_queue.adb");
