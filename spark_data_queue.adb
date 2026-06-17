@@ -13,23 +13,26 @@
 --  ============================================================================
 --  IMPLEMENTATION: Generic Thread-Safe Queue with Formal Verification
 --  
---  Version: 0.05
+--  Version: 0.06
 --  
 --  This implementation uses a circular buffer for O(1) enqueue and dequeue
 --  operations. The circular buffer wraps around when reaching the end of the
 --  storage array.
 --  
 --  Thread Safety: Achieved through SPARK's formal verification of:
---    1. Global/Depends contracts ensuring proper data dependencies
---    2. Type invariants maintaining valid queue state
---    3. Pre/Post conditions for all operations
+--    1. Type invariants maintaining valid queue state
+--    2. Pre/Post conditions for all operations
 --  
 --  For embedded systems: No dynamic memory allocation, predictable timing
+--  
+--  Note: For generic packages, use pragma SPARK_Mode in the body to enable analysis
 --  ============================================================================
 
-pragma SPARK_Mode (On);
+pragma SPARK_Mode;
 
 package body Spark_Data_Queue is
+   
+   pragma SPARK_Mode (On);
    
    function Create_Queue (Max_Size : Positive := Positive'Last) 
      return Queue_Type is

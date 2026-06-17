@@ -13,7 +13,7 @@
 --  ============================================================================
 --  SPECIFICATION: Generic Thread-Safe Queue with Formal Verification
 --  
---  Version: 0.05
+--  Version: 0.06
 --  
 --  Purpose: Provides a thread-safe, formally verified FIFO queue for embedded
 --           real-time systems. Suitable for cFS (Core Flight System) ports.
@@ -34,12 +34,14 @@
 --  
 --  ============================================================================
 
-pragma SPARK_Mode (On);
+pragma SPARK_Mode;
 
 generic
    type Element_Type is private;
 
 package Spark_Data_Queue is
+   
+   pragma SPARK_Mode (On);
    
    type Queue_Type (Capacity : Positive) is private;
    
