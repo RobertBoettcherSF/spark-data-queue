@@ -14,6 +14,7 @@
 --  GNAT PROJECT FILE: spark_data_queue.gpr
 --  
 --  Main project file for SPARK Data Queue library.
+--  Compatible with older GNAT versions.
 --  
 --  Usage:
 --    gprbuild -P spark_data_queue.gpr        # Build the library
@@ -32,15 +33,12 @@ project Spark_Data_Queue is
    --  Object directory
    for Object_Dir use "obj";
    
-   --  Use Ada 2012
-   for Language use ("Ada_2012");
-   
    --  Source files
    for Source_Files use ("spark_data_queue.ads", "spark_data_queue.adb");
    
-   --  Compiler options
+   --  Compiler options for Ada 2012
    package Compiler is
-      for Default_Switches ("Ada") use ("-g", "-O2", "-gnatn", "-gnata");
+      for Default_Switches ("Ada") use ("-g", "-O2", "-gnatn", "-gnata", "-gnat2012");
    end Compiler;
 
 end Spark_Data_Queue;

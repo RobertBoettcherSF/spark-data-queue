@@ -14,7 +14,7 @@
 --  GNAT PROJECT FILE: test_queue.gpr
 --  
 --  This project file defines the build configuration for the SPARK Data Queue
---  test suite. It includes all necessary dependencies and settings.
+--  test suite. Compatible with older GNAT versions.
 --  
 --  Usage:
 --    gprbuild -P test_queue.gpr        # Build and run tests
@@ -30,11 +30,7 @@ project Test_Queue is
    --  Project description
    Description := "Test suite for SPARK Data Queue";
    
-   --  ========================================================================
-   --  SOURCE DIRECTORIES
-   --  ========================================================================
-   
-   --  Test source directory
+   --  Source directories
    for Source_Dirs use ("tests", "src/queue");
    
    --  Object directory for build artifacts
@@ -46,43 +42,15 @@ project Test_Queue is
    --  Main test executable
    for Main use ("test_queue.adb");
    
-   --  ========================================================================
-   --  LANGUAGE SETTINGS
-   --  ========================================================================
-   
-   --  Use Ada 2012 standard
-   for Language use ("Ada_2012");
-   
-   --  ========================================================================
-   --  COMPILER OPTIONS
-   --  ========================================================================
-   
+   --  Compiler options for Ada 2012
    package Compiler is
       for Default_Switches ("Ada") use (
          "-g",              --  Generate debug information
          "-O2",             --  Optimization level 2
          "-gnatn",          --  Enable assertions
          "-gnata",          --  Enable static assertions
-         "-gnatwae",        --  Warnings as errors
-         "-gnatW8",         --  Enable all warnings
-         "-gnatf"           --  Full error messages
+         "-gnat2012"        --  Ada 2012 standard
       );
    end Compiler;
-   
-   --  ========================================================================
-   --  BINDER OPTIONS
-   --  ========================================================================
-   
-   package Binder is
-      for Default_Switches ("Ada") use ("-E");
-   end Binder;
-   
-   --  ========================================================================
-   --  LINKER OPTIONS
-   --  ========================================================================
-   
-   package Linker is
-      for Default_Switches ("Ada") use ("-static");
-   end Linker;
 
 end Test_Queue;

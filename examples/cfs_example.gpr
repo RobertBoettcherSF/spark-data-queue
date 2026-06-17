@@ -13,7 +13,7 @@
 --  ============================================================================
 --  GNAT PROJECT FILE: cfs_example.gpr
 --  
---  Project file for the cFS-like example demonstrating embedded systems usage.
+--  Project file for the cFS-like example. Compatible with older GNAT versions.
 --  
 --  Usage:
 --    gprbuild -P cfs_example.gpr
@@ -26,13 +26,7 @@ project CFS_Example is
    --  Project version
    Version := "0.03";
    
-   --  Project description
-   Description := "cFS-like example for SPARK Data Queue";
-   
-   --  ========================================================================
-   --  SOURCE DIRECTORIES
-   --  ========================================================================
-   
+   --  Source directories
    for Source_Dirs use ("examples", "src/queue");
    for Object_Dir use "obj";
    for Exec_Dir use "bin";
@@ -40,42 +34,9 @@ project CFS_Example is
    --  Main executable
    for Main use ("cfs_example.adb");
    
-   --  ========================================================================
-   --  LANGUAGE SETTINGS
-   --  ========================================================================
-   
-   for Language use ("Ada_2012");
-   
-   --  ========================================================================
-   --  COMPILER OPTIONS
-   --  ========================================================================
-   
+   --  Compiler options for Ada 2012
    package Compiler is
-      for Default_Switches ("Ada") use (
-         "-g",
-         "-O2",
-         "-gnatn",
-         "-gnata",
-         "-gnatwae",
-         "-gnatW8",
-         "-gnatf"
-      );
+      for Default_Switches ("Ada") use ("-g", "-O2", "-gnatn", "-gnata", "-gnat2012");
    end Compiler;
-   
-   --  ========================================================================
-   --  BINDER OPTIONS
-   --  ========================================================================
-   
-   package Binder is
-      for Default_Switches ("Ada") use ("-E");
-   end Binder;
-   
-   --  ========================================================================
-   --  LINKER OPTIONS
-   --  ========================================================================
-   
-   package Linker is
-      for Default_Switches ("Ada") use ("-static");
-   end Linker;
 
 end CFS_Example;

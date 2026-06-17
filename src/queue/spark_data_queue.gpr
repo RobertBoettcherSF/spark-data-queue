@@ -14,32 +14,21 @@
 --  GNAT PROJECT FILE: spark_data_queue.gpr
 --  
 --  This project file defines the build configuration for the SPARK Data Queue
---  library. It includes SPARK-specific settings for formal verification.
+--  library. Compatible with older GNAT versions.
 --  
 --  Usage:
 --    gprbuild -P spark_data_queue.gpr        # Build the library
 --    gprclean -P spark_data_queue.gpr        # Clean build artifacts
---    gnatprove -P spark_data_queue.gpr       # Run formal verification
 --  
 --  ============================================================================
 
 project Spark_Data_Queue is
    
-   --  Project version (matches VERSION file)
+   --  Project version
    Version := "0.03";
    
    --  Project description
    Description := "Thread-safe, formally verified FIFO queue for embedded systems";
-   
-   --  Author information
-   Author := "Robert Boettcher";
-   
-   --  License
-   License := "MIT";
-   
-   --  ========================================================================
-   --  SOURCE DIRECTORIES
-   --  ========================================================================
    
    --  Source directory for the queue implementation
    for Source_Dirs use ("src/queue");
@@ -50,53 +39,23 @@ project Spark_Data_Queue is
    --  Executable directory
    for Exec_Dir use "bin";
    
-   --  ========================================================================
-   --  LANGUAGE SETTINGS
-   --  ========================================================================
-   
-   --  Use Ada 2012 standard
-   for Language use ("Ada_2012");
-   
-   --  Enable SPARK mode for all source files
+   --  Source files
    for Source_Files use ("spark_data_queue.ads", "spark_data_queue.adb");
    
-   --  SPARK-specific settings
-   package SPARK_Builder is
-      for Default_Switches ("Ada") use ("-gnatN", "-gnata");
-   end SPARK_Builder;
-   
-   --  ========================================================================
-   --  COMPILER OPTIONS
-   --  ========================================================================
-   
-   --  Compiler switches for development and verification
+   --  Compiler options for Ada 2012
    package Compiler is
       for Default_Switches ("Ada") use (
          "-g",              --  Generate debug information
          "-O2",             --  Optimization level 2
          "-gnatn",          --  Enable assertions
          "-gnata",          --  Enable static assertions
-         "-gnatwae",        --  Warnings as errors
-         "-gnatwe",         --  Treat warnings as errors
-         "-gnatW8",         --  Enable all warnings
-         "-gnatf"           --  Full error messages
+         "-gnat2012"        --  Ada 2012 standard
       );
    end Compiler;
    
-   --  ========================================================================
-   --  BINDER OPTIONS
-   --  ========================================================================
-   
-   package Binder is
-      for Default_Switches ("Ada") use ("-E");
-   end Binder;
-   
-   --  ========================================================================
-   --  LINKER OPTIONS
-   --  ========================================================================
-   
-   package Linker is
-      for Default_Switches ("Ada") use ("-static");
-   end Linker;
+   --  SPARK-specific settings
+   package SPARK_Builder is
+      for Default_Switches ("Ada") use ("-gnatN", "-gnata");
+   end SPARK_Builder;
 
 end Spark_Data_Queue;
