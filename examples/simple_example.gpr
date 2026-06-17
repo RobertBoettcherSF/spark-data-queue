@@ -1,0 +1,81 @@
+--  SPARK Data Queue - Simple Example Project File
+--  
+--  Copyright (C) 2024 Robert Boettcher
+--  
+--  This file is part of spark-data-queue.
+--  
+--  spark-data-queue is free software: you can redistribute it and/or modify
+--  it under the terms of the MIT License as published by
+--  the Free Software Foundation.
+--  
+--  See LICENSE file for full license text.
+
+--  ============================================================================
+--  GNAT PROJECT FILE: simple_example.gpr
+--  
+--  Project file for the simple example demonstrating basic queue usage.
+--  
+--  Usage:
+--    gprbuild -P simple_example.gpr
+--    ./obj/simple_example
+--  
+--  ============================================================================
+
+project Simple_Example is
+   
+   --  Project version
+   Version := "0.01";
+   
+   --  Project description
+   Description := "Simple example for SPARK Data Queue";
+   
+   --  ========================================================================
+   --  SOURCE DIRECTORIES
+   --  ========================================================================
+   
+   for Source_Dirs use ("examples", "src/queue");
+   for Object_Dir use "obj";
+   for Exec_Dir use "bin";
+   
+   --  Main executable
+   for Main use ("simple_example.adb");
+   
+   --  ========================================================================
+   --  LANGUAGE SETTINGS
+   --  ========================================================================
+   
+   for Language use ("Ada_2012");
+   
+   --  ========================================================================
+   --  COMPILER OPTIONS
+   --  ========================================================================
+   
+   package Compiler is
+      for Default_Switches ("Ada") use (
+         "-g",
+         "-O2",
+         "-gnatn",
+         "-gnata",
+         "-gnatwae",
+         "-gnatW8",
+         "-gnatf"
+      );
+   end Compiler;
+   
+   --  ========================================================================
+   --  BINDER OPTIONS
+   --  ========================================================================
+   
+   package Binder is
+      for Default_Switches ("Ada") use ("-E");
+   end Binder;
+   
+   --  ========================================================================
+   --  LINKER OPTIONS
+   --  ========================================================================
+   
+   package Linker is
+      for Default_Switches ("Ada") use ("-static");
+   end Linker;
+
+end Simple_Example;

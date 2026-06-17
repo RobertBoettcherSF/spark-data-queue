@@ -3,3 +3,24 @@
 
 # Ada Library Information
 *.ali
+
+# Build artifacts
+obj/
+bin/
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS specific files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+*~
