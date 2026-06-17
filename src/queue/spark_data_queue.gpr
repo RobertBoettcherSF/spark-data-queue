@@ -98,21 +98,5 @@ project Spark_Data_Queue is
    package Linker is
       for Default_Switches ("Ada") use ("-static");
    end Linker;
-   
-   --  ========================================================================
-   --  SPARK VERIFICATION SETTINGS
-   --  ========================================================================
-   
-   --  GNATprove configuration for formal verification
-   package Proof is
-      --  Enable SPARK proof
-      for Proof_Switches ("Ada") use ("--level=2");
-      
-      --  Timeout for proof (in seconds)
-      for Timeout use 300;
-      
-      --  Enable all proof steps
-      for Steps use ("flow", "initialize", "memory", "data_dep", "proof");
-   end Proof;
 
 end Spark_Data_Queue;
