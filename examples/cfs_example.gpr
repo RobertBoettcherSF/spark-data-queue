@@ -24,7 +24,7 @@
 project CFS_Example is
    
    --  Project version
-   Version := "0.01";
+   Version := "0.03";
    
    --  Project description
    Description := "cFS-like example for SPARK Data Queue";

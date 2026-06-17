@@ -391,7 +391,7 @@ procedure Test_Queue is
 begin
    Ada.Text_IO.Put_Line ("SPARK Data Queue - Test Suite");
    Ada.Text_IO.Put_Line ("================================");
-   Ada.Text_IO.Put_Line ("Version: 0.01");
+   Ada.Text_IO.Put_Line ("Version: 0.03");
    Ada.Text_IO.Put_Line ("");
    
    --  Run all test procedures

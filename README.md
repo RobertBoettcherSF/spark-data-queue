@@ -3,7 +3,7 @@
 [![SPARK](https://img.shields.io/badge/SPARK-Proved-brightgreen.svg)](https://www.spark-2014.org/)
 [![Ada](https://img.shields.io/badge/Ada-2012-blue.svg)](https://www.adaic.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Version: 0.01](https://img.shields.io/badge/Version-0.01-orange.svg)](VERSION)
+[![Version: 0.03](https://img.shields.io/badge/Version-0.03-orange.svg)](VERSION)
 
 ---
 
@@ -222,6 +222,8 @@ gprbuild -P test_queue.gpr
 | Version | Datum / Date | Änderungen / Changes |
 |---------|--------------|---------------------|
 | 0.01    | 2024-01-XX   | Initiales Release: Grundlegende Queue-Implementierung mit SPARK-Verifikation |
+| 0.02    | 2024-01-XX   | Fix: GPR-Dateien korrigiert (Timeout-Attribut entfernt) |
+| 0.03    | 2024-01-XX   | Fix: Root-Level GPR-Datei hinzugefügt, Versionen aktualisiert |
 
 ---
 

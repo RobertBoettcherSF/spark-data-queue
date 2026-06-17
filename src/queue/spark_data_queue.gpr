@@ -26,7 +26,7 @@
 project Spark_Data_Queue is
    
    --  Project version (matches VERSION file)
-   Version := "0.01";
+   Version := "0.03";
    
    --  Project description
    Description := "Thread-safe, formally verified FIFO queue for embedded systems";
