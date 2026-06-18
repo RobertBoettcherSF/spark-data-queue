@@ -13,7 +13,7 @@
 --  ============================================================================
 --  CONCRETE INSTANTIATION: For SPARK Analysis
 --  
---  Version: 0.07
+--  Version: 0.08
 --  
 --  Purpose: SPARK cannot analyze generic package bodies directly.
 --           This file creates a concrete instantiation that SPARK can analyze.
@@ -25,13 +25,15 @@ pragma SPARK_Mode (On);
 
 with Spark_Data_Queue;
 
-package Spark_Data_Queue_Integer is new Spark_Data_Queue (Element_Type => Integer);
+package Spark_Data_Queue_Instantiation is
+   
+   --  Instantiate the generic queue with Integer type
+   package Integer_Queue is new Spark_Data_Queue (Element_Type => Integer);
+   
+   --  Use the instantiated package
+   use Integer_Queue;
+   
+   --  Create a queue instance for SPARK analysis
+   Queue_Example : Queue_Type := Create_Queue (Max_Size => 10);
 
---  Export the instantiated type for SPARK analysis
-package Spark_Data_Queue_Inst is new Spark_Data_Queue_Integer;
-use Spark_Data_Queue_Inst;
-
---  Create a queue instance for analysis
-Queue_Example : Queue_Type := Create_Queue (Max_Size => 10);
-
---  SPARK will analyze the instantiated package body through this file
+end Spark_Data_Queue_Instantiation;
