@@ -13,10 +13,12 @@
 --  ============================================================================
 --  GNAT PROJECT FILE: spark_data_queue.gpr
 --  
---  Version: 0.06
+--  Version: 0.07
 --  
 --  Main project file for SPARK Data Queue library.
 --  All source files are in the root directory.
+--  
+--  For generic packages: We create a concrete instantiation for SPARK analysis
 --  
 --  Usage:
 --    gprbuild -P spark_data_queue.gpr        # Build the library
@@ -27,10 +29,10 @@
 project Spark_Data_Queue is
    
    --  Project version
-   Version := "0.06";
+   Version := "0.07";
    
    --  Source files in root directory
-   for Source_Files use ("spark_data_queue.ads", "spark_data_queue.adb");
+   for Source_Files use ("spark_data_queue.ads", "spark_data_queue.adb", "spark_data_queue_instantiation.ads");
    
    --  Object directory
    for Object_Dir use "obj";
@@ -39,5 +41,10 @@ project Spark_Data_Queue is
    package Compiler is
       for Default_Switches ("Ada") use ("-g", "-O2", "-gnatn", "-gnata", "-gnat2012");
    end Compiler;
+   
+   --  SPARK Builder settings
+   package SPARK_Builder is
+      for Default_Switches ("Ada") use ("-gnatN", "-gnata");
+   end SPARK_Builder;
 
 end Spark_Data_Queue;
