@@ -13,7 +13,7 @@
 --  ============================================================================
 --  CONCRETE INSTANTIATION: For SPARK Analysis
 --  
---  Version: 0.08
+--  Version: 0.09
 --  
 --  Purpose: SPARK cannot analyze generic package bodies directly.
 --           This file creates a concrete instantiation that SPARK can analyze.
@@ -27,7 +27,7 @@ with Spark_Data_Queue;
 
 package Spark_Data_Queue_Instantiation is
    
-   --  Instantiate the generic queue with Integer type
+   --  Instantiate the generic queue with Integer type for SPARK analysis
    package Integer_Queue is new Spark_Data_Queue (Element_Type => Integer);
    
    --  Use the instantiated package
